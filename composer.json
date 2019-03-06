@@ -1,0 +1,27 @@
+{
+    "name": "nissin/quotereplace",
+    "type": "phpbb-extension",
+    "description": "Replace quotes from old mod with phpbb console",
+    "homepage": "http://nurlan.info",
+    "version": "1.0.3",
+    "time": "2018-11-30",
+    "license": "GPL-2.0-only",
+    "authors": [
+        {
+            "name": "Nurlan Issin",
+            "email": "nurlan@nurlan.info",
+            "homepage": "http://nurlan.info",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "composer/installers": "~1.0"
+    },
+    "extra": {
+        "display-name": "Replace quotes from old mod",
+        "soft-require": {
+            "phpbb/phpbb": ">=3.1.4,<3.3.0@dev"
+        }
+    }
+}

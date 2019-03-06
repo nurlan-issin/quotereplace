@@ -1,0 +1,8 @@
+services:
+    nissin.quotereplace.command.quote:
+        class: nissin\quotereplace\console\command\quote
+        arguments:
+            - '@user'
+            - '@dbal.conn'
+        tags:
+            - { name: console.command }
