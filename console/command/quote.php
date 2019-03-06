@@ -66,7 +66,8 @@ class quote extends \phpbb\console\command\command
 
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$new_post_text = preg_replace_callback('/\[quote=(?:"|&quot;|&amp;quot;)([^"]+?)(?:"|&quot;|&amp;quot;);p=(?:"|&quot;|&amp;quot;)(\d+)(?:"|&quot;|&amp;quot;)(:' . bbcode_uid . ')?\]/iu', array($this, 'new_bbcode'), $row['post_text']);
+			$new_post_text = preg_replace_callback('/\[quote=(?:"|&quot;|&amp;quot;)([^"]*?)(?:"|&quot;|&amp;quot;);p=(?:"|&quot;|&amp;quot;)(\d+)(?:"|&quot;|&amp;quot;)(:[0-9a-z]{8})?\]/iu', array($this, 'new_bbcode'), $row['post_text']);
+			$new_post_text = preg_replace('/\[\/quote:[0-9a-z]{8}\]/iu', '[/quote]', $new_post_text);
 			if ($new_post_text !== $row['post_text'])
 			{
 				$flags = ($row['enable_bbcode']) ? OPTION_FLAG_BBCODE : 0;
@@ -142,14 +143,14 @@ class quote extends \phpbb\console\command\command
 					$user_id = (int) $row['poster_id'];
 					$username = get_username_string('username', $user_id, $row['username'], '', $row['post_username']);
 				}
-				return '[quote="' . $username . '" post_id="' . $post_id . '" time="' . $post_time . '" user_id="' . $user_id . '"]';
+				return '[quote="' . $username . '" post_id=' . $post_id . ' time=' . $post_time . ' user_id=' . $user_id . ']';
 			}
 			$this->db->sql_freeresult($result);
 		}
 		
 		if (isset($user_id) && $user_id)
 		{
-			return '[quote="' . $username . '" user_id="' . $user_id . '"]';
+			return '[quote="' . $username . '" user_id=' . $user_id . ']';
 		}
 		return '[quote="' . $username . '"]';
 	}

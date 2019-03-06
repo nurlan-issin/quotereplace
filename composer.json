@@ -3,7 +3,7 @@
     "type": "phpbb-extension",
     "description": "Replace quotes from old mod with phpbb console",
     "homepage": "http://nurlan.info",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "time": "2018-11-30",
     "license": "GPL-2.0-only",
     "authors": [
